@@ -12,14 +12,28 @@ class Munchie
     @end # change this to make the city state look normal
   end
 
+  
+  def forecast
+    data = DarkSkyService.new(get_destination_coordinates, arrival_time).future_forecast
+  end
+  
+  def restaurant
+    {
+      name: restuarant_info[0],
+      address: restaurant_info[1]
+    }
+  end
+  
   def travel_time
     both_travel_times[0]
   end
 
-  def forecast
-    data = DarkSkyService.new(get_destination_coordinates, arrival_time).future_forecast
+  private
+  
+  def restuarant_info
+    YelpService.new(arrival_time, @food, @end).info
   end
-
+  
   def both_travel_times
     GoogleGeoService.new("#{@start},#{@end}").travel_time
   end
