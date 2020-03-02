@@ -25,4 +25,4 @@
 /config/application.yml
 
 #simplecov
-simplecov
+coverage
