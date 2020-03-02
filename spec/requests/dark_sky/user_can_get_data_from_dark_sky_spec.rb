@@ -9,7 +9,6 @@ RSpec.describe 'Dark Sky API' do
 
     forecast = JSON.parse(response.body, symbolize_names: true)[:data][:attributes][:forecast_data]
 
-    require 'pry'; binding.pry
 
     expect(forecast[:currently].keys).to eq([:time, :summary, :icon, :temp, :feels_like, :humidity, :visibility, :uv_index])
 
