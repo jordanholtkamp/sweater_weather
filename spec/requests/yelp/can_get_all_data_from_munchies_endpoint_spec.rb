@@ -10,8 +10,9 @@ RSpec.describe 'munchies endpoint' do
 
     expect(response).to be_successful
 
-    munchie_data = JSON.parse(response.body, symbloize_names: true)[:data]
+    munchie_data = JSON.parse(response.body, symbolize_names: true)[:data]
 
+    require 'pry'; binding.pry
     expect(munchie_data[:type]).to eq('munchie')
     expect(munchie_data[:attributes].keys).to eq([:end_location, :travel_time, :forecast, :restaurant])
     expect(munchie_data[:attributes][:restaurant].keys).to eq([:name, :address])

@@ -9,7 +9,9 @@ class Munchie
   end
 
   def end_location
-    @end # change this to make the city state look normal
+    city = @end.split(',')[0].capitalize
+    state = @end.split(',')[1].upcase
+    "#{city}, #{state}"
   end
 
   
@@ -19,7 +21,7 @@ class Munchie
   
   def restaurant
     {
-      name: restuarant_info[0],
+      name: restaurant_info[0],
       address: restaurant_info[1]
     }
   end
@@ -30,8 +32,8 @@ class Munchie
 
   private
   
-  def restuarant_info
-    YelpService.new(arrival_time, @food, @end).info
+  def restaurant_info
+    YelpService.new(arrival_time, @food, @end).business_info
   end
   
   def both_travel_times

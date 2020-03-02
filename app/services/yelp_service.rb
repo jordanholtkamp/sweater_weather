@@ -6,21 +6,23 @@ class YelpService
     @destination = destination
   end
 
-  def info
-    response
+  def business_info
+    info = JSON.parse(response.body, symbolize_names: true)[:businesses][0]
+    name = info[:name]
+    address = info[:location][:address1]
+    [name, address]
   end
 
   private
 
   def conn
-    Faraday.new('https://api.yelp.com/v3') do |f|
-      f.adapter = Faraday.default_adapter
+    Faraday.new('https://api.yelp.com') do |f|
+      f.adapter Faraday.default_adapter
       f.headers['Authorization'] = "Bearer #{ENV['YELP_KEY']}"
     end
   end
 
   def response
-  require 'pry'; binding.pry
-    conn.get("/businesses/search?term=#{@food}&location=#{@destination.split(',')[0]}&open_at=#{@time}")
+    conn.get("/v3/businesses/search?term=#{@food}&location=#{@destination.split(',')[0]}&open_at=#{@time}")
   end
 end
