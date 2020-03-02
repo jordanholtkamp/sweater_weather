@@ -13,12 +13,19 @@ class Munchie
   end
 
   def travel_time
-    GoogleGeoService.new("#{@start},#{@end}").travel_time
+    both_travel_times[0]
   end
 
   def forecast
-    hi = DarkSkyService.new(get_destination_coordinates).parsed_forecast
-    require 'pry'; binding.pry
+    data = DarkSkyService.new(get_destination_coordinates, arrival_time).future_forecast
+  end
+
+  def both_travel_times
+    GoogleGeoService.new("#{@start},#{@end}").travel_time
+  end
+
+  def arrival_time
+    both_travel_times[1] + Time.now.to_i
   end
 
   def get_destination_coordinates

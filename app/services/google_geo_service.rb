@@ -11,7 +11,9 @@ class GoogleGeoService
   end
 
   def travel_time
-    JSON.parse(directions_response.body, symbolize_names: true)[:routes][0][:legs][0][:duration][:text]
+    text_time = JSON.parse(directions_response.body, symbolize_names: true)[:routes][0][:legs][0][:duration][:text]
+    unix_time = JSON.parse(directions_response.body, symbolize_names: true)[:routes][0][:legs][0][:duration][:value]
+    [text_time, unix_time]
   end
 
   def address
