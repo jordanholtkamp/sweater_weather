@@ -5,6 +5,8 @@ Rails.application.routes.draw do
       get '/geolocation', to: 'geolocations#show'
 
       get '/forecast', to: 'forecast#show'
+
+      get '/backgrounds', to: 'backgrounds#show'
     end
   end
 end
