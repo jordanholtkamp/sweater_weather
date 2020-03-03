@@ -9,7 +9,8 @@ RSpec.describe 'Dark Sky API' do
 
     forecast = JSON.parse(response.body, symbolize_names: true)[:data][:attributes][:forecast_data]
 
-
+    expect(forecast.keys).to eq([:time_zone, :location, :currently, :today, :hourly, :daily])
+    
     expect(forecast[:currently].keys).to eq([:time, :summary, :icon, :temp, :feels_like, :humidity, :visibility, :uv_index])
 
     expect(forecast[:location]). to eq('Denver, CO, USA')
