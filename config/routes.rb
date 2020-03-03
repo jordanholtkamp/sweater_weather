@@ -7,6 +7,8 @@ Rails.application.routes.draw do
       get '/forecast', to: 'forecast#show'
 
       get '/backgrounds', to: 'backgrounds#show'
+
+      resources :users, only: [:create]
     end
   end
 end
