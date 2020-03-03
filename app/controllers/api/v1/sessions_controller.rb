@@ -4,7 +4,7 @@ class Api::V1::SessionsController < ApplicationController
       session[:user_id] = user.id
       render json: UserSerializer.new(user), status: 200
     else
-      render json: {status: 401, error: 'Bad credentials'}
+      render json: {error: 'Bad credentials'}, status: 401
     end
   end
 end

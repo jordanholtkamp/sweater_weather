@@ -22,4 +22,16 @@ RSpec.describe 'As a registered user' do
     session = JSON.parse(response.body)['data']['attributes']
     expect(session['api_key']).to eq(@kyle.api_key)
   end
+
+  it 'I cannot login with wrong email or password' do
+    post '/api/v1/sessions', params: {
+      email: 'kyle@red_bull.com',
+      password: 'ilovemonster'
+    }
+
+    expect(response.status).to eq(401)
+
+    message = JSON.parse(response.body)
+    expect(message['error']).to eq('Bad credentials')
+  end
 end
