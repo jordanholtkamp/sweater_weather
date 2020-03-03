@@ -6,7 +6,10 @@ RSpec.describe 'user registration' do
       email: 'kyle@monster.com',
       password: 'ilovemonster',
       password_confrimation: 'ilovemonster'
-    }
+     } #.to_json, headers: {
+    #   'Content-Type' => 'application/json',
+    #   'Accept' => 'application/json'
+    # }
 
     expect(response).to be_successful
 
