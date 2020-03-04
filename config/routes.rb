@@ -16,5 +16,5 @@ Rails.application.routes.draw do
     end
   end
 
-  get '/', to: 'welcome#controller'
+  get '/', to: 'welcome#index'
 end
