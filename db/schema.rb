@@ -14,21 +14,4 @@ ActiveRecord::Schema.define(version: 2020_03_03_154500) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "locations", force: :cascade do |t|
-    t.string "city"
-    t.string "lat"
-    t.string "long"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "email"
-    t.string "password_digest"
-    t.string "api_key"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
 end
