@@ -1,22 +1,25 @@
 class DarkSkyService
-  def initialize(coordinates)
+  def initialize(coordinates, arrival_time = nil)
     @coordinates = coordinates
-  end
-
-  def get_forecast
-    
-  end
-
-  def conn
-    Faraday.new('https://api.darksky.net/')
-  end
-
-  def response
-    key = ENV['DARK_SKY_KEY']
-    conn.get("/forecast/#{key}/#{@coordinates}")
+    @arrival_time = arrival_time
   end
 
   def parsed_forecast
-    JSON.parse(response.body, symbolize_names: true)
+    JSON.parse(weather_response.body, symbolize_names: true)
+  end
+
+  private
+
+  def conn
+    Faraday.new('https://api.darksky.net')
+  end
+
+  def weather_response
+    key = ENV['DARK_SKY_KEY']
+    if !@arrival_time
+      conn.get("/forecast/#{key}/#{@coordinates}")
+    else
+      conn.get("/forecast/#{key}/#{@coordinates},#{@arrival_time}")
+    end
   end
 end
