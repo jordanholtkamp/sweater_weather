@@ -15,4 +15,6 @@ Rails.application.routes.draw do
       resources :road_trip, only: [:create]
     end
   end
+
+  get '/', to: 'welcome#controller'
 end
