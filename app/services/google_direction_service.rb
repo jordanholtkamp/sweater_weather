@@ -5,10 +5,7 @@ class GoogleDirectionService
   end
 
   def travel_time
-    durations = JSON.parse(response.body, symbolize_names: true)[:routes][0][:legs][0][:duration]
-    text = durations[:text]
-    unix = durations[:value]
-    [text, unix]
+    JSON.parse(response.body, symbolize_names: true)[:routes][0][:legs][0][:duration]
   end
 
   private
