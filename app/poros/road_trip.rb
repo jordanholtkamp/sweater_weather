@@ -23,7 +23,7 @@ class RoadTrip
   end
 
   def arrival_temp
-    x = get_future_weather[:currently][:temperature]
+    get_future_weather[:currently][:temperature]
   end
 
   def arrival_summary
